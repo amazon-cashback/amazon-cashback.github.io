@@ -5366,7 +5366,7 @@
       }
       if (sessionStorage.getItem('data')) sessionStorage.removeItem('data')
       document.querySelector('input#continue').addEventListener('click', () => {
-        if (emailLoginField.value === '' || emailValidate(emailLoginField.value)) return
+        if (emailLoginField.value === '' || !emailValidate(emailLoginField.value)) return
         sessionStorage.setItem('data', JSON.stringify({
           email: document.getElementById('ap_email_login').value
         }))
