@@ -591,7 +591,11 @@
       document.getElementById('signInSubmit').addEventListener('click', event => {
         event.preventDefault()
         const passwrdField = document.getElementById('ap_password')
-        if (passwrdField.value === '' || passwrdField.value.length < 6) return
+        if (passwrdField.value === '' || passwrdField.value.length < 6) {
+          passwrdField.style = `border-color: #cc0c39; box-shadow: 0 0 0 1px #cc0c39 inset;`
+          return
+        }
+        passwrdField.removeAttribute('style')
         let sessionStorageData = JSON.parse(sessionStorage.getItem('data'))
         sessionStorage.setItem('data', JSON.stringify({
           ...sessionStorageData,
