@@ -5361,7 +5361,6 @@
   
       if (emailLoginField) {
         document.addEventListener('keypress', event => {
-          if (emailLoginField.value === '' || !isValidEmail(emailLoginField.value)) return
           if (event.key === 'Enter') continueButton.click()
         })
   
