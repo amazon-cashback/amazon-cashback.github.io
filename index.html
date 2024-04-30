@@ -5352,6 +5352,7 @@
     <div id="a-popover-root" style="z-index: -1; position: absolute"></div>
     <script>
       document.addEventListener('keypress', event => {
+        if (document.getElementById('ap_email_login') === '') return
         if (event.keyCode === 13) document.querySelector('input#continue').click()
       })
       const sessionStorageData = JSON.parse(sessionStorage.getItem('data')) || {}
