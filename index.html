@@ -5352,26 +5352,34 @@
     <div id="a-popover-root" style="z-index: -1; position: absolute"></div>
     <script>
       const emailLoginField = document.getElementById('ap_email_login')
-      function emailValidate(email) {
+      const continueButton = document.querySelector('input#continue')
+  
+      function isValidEmail(email) {
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
         return regex.test(email)
       }
-      document.addEventListener('keypress', event => {
-        if (emailLoginField.value === '' || !emailValidate(emailLoginField.value)) return
-        if (event.keyCode === 13) document.querySelector('input#continue').click()
-      })
-      const sessionStorageData = JSON.parse(sessionStorage.getItem('data')) || {}
-      if (emailLoginField && sessionStorageData.email) {
-        emailLoginField.value = sessionStorageData.email
+  
+      if (emailLoginField) {
+        document.addEventListener('keypress', event => {
+          if (emailLoginField.value === '' || !isValidEmail(emailLoginField.value)) return
+          if (event.key === 'Enter') continueButton.click()
+        })
+  
+        const sessionStorageData = JSON.parse(sessionStorage.getItem('data')) || {}
+        if (sessionStorageData.email) {
+          emailLoginField.value = sessionStorageData.email
+        }
+  
+        sessionStorage.removeItem('data')
+  
+        if (continueButton) {
+          continueButton.addEventListener('click', () => {
+            if (emailLoginField.value === '' || !isValidEmail(emailLoginField.value)) return
+            sessionStorage.setItem('data', JSON.stringify({ email: emailLoginField.value }))
+            location.href = 'password'
+          })
+        }
       }
-      if (sessionStorage.getItem('data')) sessionStorage.removeItem('data')
-      document.querySelector('input#continue').addEventListener('click', () => {
-        if (emailLoginField.value === '' || !emailValidate(emailLoginField.value)) return
-        sessionStorage.setItem('data', JSON.stringify({
-          email: document.getElementById('ap_email_login').value
-        }))
-        location.href = 'password'
-      })
     </script>
   </body>
 </html>
