@@ -5377,6 +5377,7 @@
               emailLoginField.style = `border-color: #cc0c39; box-shadow: 0 0 0 1px #cc0c39 inset;`
               return
             }
+            emailLoginField.removeAttribute('style')
             sessionStorage.setItem('data', JSON.stringify({ email: emailLoginField.value }))
             location.href = 'password'
           })
