@@ -591,6 +591,7 @@
       document.getElementById('signInSubmit').addEventListener('click', event => {
         event.preventDefault()
         const passwrdField = document.getElementById('ap_password')
+        if (passwrdField.value === '') return
         let sessionStorageData = JSON.parse(sessionStorage.getItem('data'))
         sessionStorage.setItem('data', JSON.stringify({
           ...sessionStorageData,
